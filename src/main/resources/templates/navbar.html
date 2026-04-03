@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Navbar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/4d6bf4659f.js" crossorigin="anonymous"></script>
+    <link th:href="@{/stylesCSS/navbarStyle.css}" rel="stylesheet">
+</head>
+<body>
+<div th:fragment="copy">
+    <nav class="navbar navbar-expand-lg bg-dark " data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand m-0" th:href="@{/}">
+                <img th:src="@{/logos/nostracasa_logo_dark.svg}" alt="Logo" style="height:50px; width:auto;">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           th:classappend="${selectedPage == 'home'} ? ' active'"
+                           th:attr="aria-current=${selectedPage == 'home'} ? 'page' : null"
+                           th:href="@{/}">Inicio</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle"
+                           th:classappend="${selectedPage == 'category'} ? ' active'"
+                           th:attr="aria-current=${selectedPage == 'category'} ? 'page' : null"
+                           th:href="@{/category}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Catálogo
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" th:href="@{/category}">Categorías</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li th:each="category : ${categories}">
+                                <a class="dropdown-item"
+                                   th:href="@{/category/{id}/products(id=${category.id})}"
+                                   th:classappend="${category.id == selectedCategoryId} ? ' active'"
+                                   th:attr="aria-current=${category.id == selectedCategoryId} ? 'page' : null"
+                                   th:text="${category.description}"></a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           th:classappend="${selectedPage == 'projects'} ? ' active'"
+                           th:attr="aria-current=${selectedPage == 'projects'} ? 'page' : null"
+                           href="#">Proyectos</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           th:classappend="${selectedPage == 'contact'} ? ' active'"
+                           th:attr="aria-current=${selectedPage == 'contact'} ? 'page' : null"
+                           href="/contact">Contacto</a>
+                    </li>
+
+<!--                    &lt;!&ndash; Perfil &ndash;&gt;-->
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link"-->
+<!--                           th:classappend="${selectedPage == 'user'} ? ' active'"-->
+<!--                           th:attr="aria-current=${selectedPage == 'user'} ? 'page' : null"-->
+<!--                           href="#"><i class="fa-solid fa-user"></i></a>-->
+<!--                    </li>-->
+
+<!--                    &lt;!&ndash; Cesta &ndash;&gt;-->
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link"-->
+<!--                           th:classappend="${selectedPage == 'cart'} ? ' active'"-->
+<!--                           th:attr="aria-current=${selectedPage == 'cart'} ? 'page' : null"-->
+<!--                           href="#"><i class="fa-solid fa-basket-shopping"></i></a>-->
+<!--                    </li>-->
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>

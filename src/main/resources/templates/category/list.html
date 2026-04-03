@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Category</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/4d6bf4659f.js" crossorigin="anonymous"></script>
+    <link th:href="@{/stylesCSS/categoriesStyle.css}" rel="stylesheet">
+    <link th:href="@{/stylesCSS/footerStyle.css}" rel="stylesheet">
+    <link th:href="@{/stylesCSS/navbarStyle.css}" rel="stylesheet">
+
+</head>
+<body>
+<div th:replace="navbar :: copy"></div>
+
+
+<div id="carouselAutoplaying" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000"  data-bs-pause="false">
+
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselAutoplaying" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#carouselAutoplaying" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#carouselAutoplaying" data-bs-slide-to="2"></button>
+    </div>
+
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img th:src="@{/categories_images/carousel/carousel0.png}" class="d-block w-100" alt="Imagen carrusel 1">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Luxuria Black</h5>
+                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim  veniam, quis nostrud exercitation ullamco
+                    laboris nisi ut aliquip ex ea  commodo consequat."
+                </p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img th:src="@{/categories_images/carousel/carousel1.png}" class="d-block w-100" alt="Imagen carrusel 2">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Zuma Purple</h5>
+                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim  veniam, quis nostrud exercitation ullamco
+                    laboris nisi ut aliquip ex ea  commodo consequat."
+                </p>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <img th:src="@{/categories_images/carousel/carousel2.png}" class="d-block w-100" alt="Imagen carrusel 3">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Opera Silver</h5>
+                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim  veniam, quis nostrud exercitation ullamco
+                    laboris nisi ut aliquip ex ea  commodo consequat."
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid px-5 px-lg-custom">
+    <h1><strong>Categorías</strong></h1>
+
+    <div id="Cards" class="row g-4 justify-content-center">
+        <!-- Itera sobre todas las categorías -->
+        <div class="col-12 col-md-4" th:each="category : ${categories}">
+            <div class="card rounded position-relative overflow-hidden">
+                <!-- Imagen de la card -->
+                <img th:src="@{${category.urlThum}}"
+                     class="card-img-top"
+                     alt="Imagen de la categoría"
+                >
+
+                <!-- Cuerpo de la card -->
+                <div class="card-body text-center">
+                    <div class="card-body text-center">
+                       <h3> <a th:href="@{/category/{id}/products(id=${category.id})}"
+                           th:text="${category.description}"
+                           class="card-link text-decoration-none text-dark"></a>
+                       </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div th:replace="footer :: copy"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

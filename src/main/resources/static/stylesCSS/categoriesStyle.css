@@ -1,0 +1,96 @@
+/*carrusel*/
+.carousel-item {
+    height: 500px;
+}
+
+.carousel-item img {
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 70%;
+}
+
+/*Botones carrusel*/
+.carousel-indicators [data-bs-target] {
+    width: 150px;
+    height: 5px; /*border-radius: 50%; */
+}
+
+.px-lg-custom {
+    padding-left: 150px;
+    padding-right: 150px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+/* Degradado caption */
+
+#carouselAutoplaying .carousel-caption {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5));
+    padding: 1rem; /* opcional, para espacio interno */
+    border-radius: 0.5rem; /* opcional, suaviza los bordes */
+}
+
+/* Texto caption */
+#carouselAutoplaying .carousel-caption h5, #carouselAutoplaying .carousel-caption p {
+    color: #ffffff;
+}
+
+#Cards .card {
+    border-radius: 1rem;
+    border: none;
+    overflow: hidden;
+    position: relative; /* necesario para overlay */
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    min-height: 350px;
+    /*background-color: #ececec;*/
+}
+
+/* Card body */
+#Cards .card-body {
+    padding: 1rem;
+    text-align: center;
+    position: relative; /* necesario para overlay */
+    z-index: 2; /* sobre overlay */
+    transition: color 0.3s;
+}
+
+/* Imagen dentro de card */
+#Cards .card-img-top {
+    border-radius: 1rem;
+    object-fit: cover;
+    height: 300px;
+    aspect-ratio: 1/1;
+}
+
+/* Overlay degradado inicial */
+#Cards .card::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+    transition: height 0.5s ease;
+    z-index: 1;
+}
+
+/* Hover overlay desde abajo */
+#Cards .card:hover::after {
+    height: 100%;
+}
+
+/* Enlace dentro de la card */
+#Cards .card a {
+    color: #000000;
+    text-decoration: none;
+    transition: color 0.3s;
+    display: inline-block;
+}
+
+/* Cambio de color del enlace al hacer hover sobre la card */
+#Cards .card:hover a {
+    color: #ffffff !important;
+}

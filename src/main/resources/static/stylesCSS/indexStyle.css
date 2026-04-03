@@ -1,0 +1,102 @@
+/*carrusel*/
+
+.carousel-item {
+    height: 500px;
+}
+
+.carousel-item img {
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 70%;
+}
+
+/*Botones carrusel*/
+.carousel-indicators [data-bs-target] {
+    width: 150px;
+    height: 5px;
+    /*border-radius: 50%; */
+}
+
+.px-lg-custom {
+    padding-left: 150px;
+    padding-right: 150px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+#section1 {
+    background-color: #ececec;
+}
+
+
+#carrusel2-indicators {
+    bottom: 10px;
+    position: absolute;
+}
+
+/* Estilo botones */
+#carrusel2-indicators [data-bs-target] {
+    background-color: rgba(0, 0, 0, 0.75);
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin: 0 4px;
+    transition: background-color 0.3s;
+}
+
+#carrusel2-indicators .active {
+    background-color: rgba(0, 0, 0, 1);
+}
+
+/* rounded */
+#carouselCards .card {
+    border-radius: 1rem;
+    border: none;
+    overflow: hidden;
+    position: relative; /* necesario para overlay */
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    min-height: 350px;
+    /*background-color: #ececec;*/
+}
+
+/* Card body */
+#carouselCards .card-body {
+    padding: 1rem;
+    text-align: center;
+    position: relative;
+    z-index: 2; /* sobre overlay */
+    color: #333; /* texto normal */
+    transition: color 0.3s;
+}
+
+/* Imagen dentro de card rounded top */
+#carouselCards .card-img-top {
+    border-radius: 1rem;
+    object-fit: cover;
+    height: 300px;
+    aspect-ratio: 1/1;
+}
+
+/* Overlay degradado inicial */
+#carouselCards .card::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+    transition: height 0.5s ease;
+    z-index: 1;
+}
+
+/* Hover overlay desde abajo */
+#carouselCards .card:hover::after {
+    height: 100%;
+}
+
+#carouselCards .card:hover .card-body {
+    color: #ffffff;
+}

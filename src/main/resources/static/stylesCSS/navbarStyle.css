@@ -1,0 +1,12 @@
+/* Estado normal: oculto */
+#catalogDropdown .dropdown-menu {
+    display: none;
+}
+
+/* Mostrar al hacer hover */
+#catalogDropdown:hover > .dropdown-menu {
+    display: block !important;
+    opacity: 1;
+    visibility: visible;
+    margin-top: 0;
+}
