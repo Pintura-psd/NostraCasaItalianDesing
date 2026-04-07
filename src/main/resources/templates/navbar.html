@@ -27,20 +27,21 @@
                         <a class="nav-link"
                            th:classappend="${selectedPage == 'home'} ? ' active'"
                            th:attr="aria-current=${selectedPage == 'home'} ? 'page' : null"
-                           th:href="@{/}">Inicio</a>
+                           th:href="@{/}"
+                           th:text="#{nav.home}">Inicio</a>
                     </li>
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle"
                            th:classappend="${selectedPage == 'category'} ? ' active'"
                            th:attr="aria-current=${selectedPage == 'category'} ? 'page' : null"
-                           th:href="@{/category}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Catálogo
+                           th:href="@{/category}"
+                           role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                           th:text="#{nav.catalog}">Catálogo
                         </a>
 
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" th:href="@{/category}">Categorías</a></li>
-                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" th:href="@{/category}" th:text="#{nav.categories}">Categorías</a></li>                            <li><hr class="dropdown-divider"></li>
                             <li th:each="category : ${categories}">
                                 <a class="dropdown-item"
                                    th:href="@{/category/{id}/products(id=${category.id})}"
@@ -55,14 +56,16 @@
                         <a class="nav-link"
                            th:classappend="${selectedPage == 'projects'} ? ' active'"
                            th:attr="aria-current=${selectedPage == 'projects'} ? 'page' : null"
-                           href="#">Proyectos</a>
+                           href="#"
+                           th:text="#{nav.projects}">Proyectos</a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link"
                            th:classappend="${selectedPage == 'contact'} ? ' active'"
                            th:attr="aria-current=${selectedPage == 'contact'} ? 'page' : null"
-                           href="/contact">Contacto</a>
+                           th:href="@{/contact}"
+                           th:text="#{nav.contact}">Contacto</a>
                     </li>
 
 <!--                    &lt;!&ndash; Perfil &ndash;&gt;-->
@@ -80,6 +83,22 @@
 <!--                           th:attr="aria-current=${selectedPage == 'cart'} ? 'page' : null"-->
 <!--                           href="#"><i class="fa-solid fa-basket-shopping"></i></a>-->
 <!--                    </li>-->
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle"
+                           href="#"
+                           role="button"
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            <i class="fa-solid fa-earth-americas"></i>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="?lang=es" th:text="#{nav.lang.es}">Español</a></li>
+                            <li><a class="dropdown-item" href="?lang=en" th:text="#{nav.lang.en}">English</a></li>
+                        </ul>
+                    </li>
+
                 </ul>
             </div>
         </div>

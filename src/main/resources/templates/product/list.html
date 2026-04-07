@@ -35,7 +35,8 @@
 <!--</div>-->
 
 <div class="container-fluid px-5 px-lg-custom">
-    <h1><strong>Productos</strong></h1>
+    <h1 th:text="#{products.title}" style="font-weight: bold"></h1>
+
 
     <!-- Itera por tipos -->
     <div th:each="entry : ${productsByType}">
