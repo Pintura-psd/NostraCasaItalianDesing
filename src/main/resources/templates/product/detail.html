@@ -25,14 +25,23 @@
     <div class="row justify-content-center mt-4">
         <div class="col-6 col-lg-5 col-xl-4">
             <div class="rounded px-5 py-3" style="background-color:#c5c5c5;">
-                <p th:text="#{product.thickness} + ':'">Grosor:</p>
-                <span class="fw-bold" th:text="${product.thickness}"></span>
+                <p>
+                    <span th:text="#{product.thickness} + ':'"></span>
+                    <br>
+                    <strong th:text="${product.thickness}"></strong>
+                </p>
 
-                <p th:text="#{product.finishes} + ':'">Acabado:</p>
-                <span class="fw-bold" th:text="${product.finishes}"></span>
+                <p>
+                    <span th:text="#{product.finishes} + ':'"></span>
+                    <br>
+                    <strong th:text="${product.finishes}"></strong>
+                </p>
 
-                <p th:text="#{product.size} + ':'">Formato:</p>
-                <span class="fw-bold" th:text="${product.size}"></span>
+                <p>
+                    <span th:text="#{product.size} + ':'"></span>
+                    <br>
+                    <strong th:text="${product.size}"></strong>
+                </p>
             </div>
         </div>
 
