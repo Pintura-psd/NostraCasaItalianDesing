@@ -12,28 +12,6 @@
 <body>
 <div th:replace="navbar :: copy"></div>
 
-<!--<div class="container-fluid px-5 px-lg-custom mt-3">-->
-<!--    <div class="d-flex justify-content-center mb-3">-->
-<!--        <form th:action="@{/products/filter}" th:object="${searchProductDTO}" method="post">-->
-<!--            <div class="input-group">-->
-<!--                <span class="input-group-text bg-white border-end-0">-->
-<!--                <i class="fas fa-search"></i>-->
-<!--            </span>-->
-<!--                <input-->
-<!--                        type="text"-->
-<!--                        th:field="*{name}"-->
-<!--                        class="form-control rounded-pill border-start-0"-->
-<!--                        placeholder="Buscar producto"-->
-<!--                        aria-label="Buscar producto">-->
-<!--                -->
-<!--                <button type="submit" class="btn btn-dark rounded-circle ms-2" style="width: 45px; height: 45px;">-->
-<!--                    <i class="fas fa-arrow-right"></i>-->
-<!--                </button>-->
-<!--            </div>-->
-<!--        </form>-->
-<!--    </div>-->
-<!--</div>-->
-
 <div class="container-fluid px-5 px-lg-custom">
     <h1 th:text="#{products.title}" style="font-weight: bold"></h1>
 
@@ -41,11 +19,9 @@
     <!-- Itera por tipos -->
     <div th:each="entry : ${productsByType}">
 
-        <!-- Título del tipo -->
-        <h2 class="mt-5 text-capitalize" th:text="${entry.value[0].displayTypeName}"></h2>
+        <h2 class="mt-5 text-capitalize" th:text="${#lists.isEmpty(entry.value) ? 'Sin tipo' : entry.key}"></h2>
         <hr>
 
-        <!-- Cards de productos -->
         <div id="Cards" class="row g-4 justify-content-center">
 
             <div class="col-12 col-md-4" th:each="product : ${entry.value}">
@@ -53,16 +29,12 @@
                 <div class="card rounded position-relative overflow-hidden">
 
                     <!-- Imagen -->
-                    <img th:src="@{${product.thumbnail}}"
-                         class="card-img-top"
-                         alt="Imagen del producto">
+                    <img th:src="@{${product.thumbnail}}" class="card-img-top" alt="Imagen del producto">
 
-                    <!-- Cuerpo -->
                     <div class="card-body text-center">
                         <h3>
-                            <a th:href="@{/category/{categoryId}/products/{productId}
-                            (categoryId=${product.category.id}, productId=${product.id})}"
-                               th:text="${product.name}"
+                            <a th:href="@{/category/{categoryId}/products/{productId}(categoryId=${product.category.id},productId=${product.id})}"
+                               th:text="${product.getName(#locale.language)}"
                                class="text-decoration-none text-dark">
                             </a>
                         </h3>

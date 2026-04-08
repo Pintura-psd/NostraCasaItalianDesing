@@ -33,7 +33,7 @@
                                    th:href="@{/category/{id}/products(id=${category.id})}"
                                    th:classappend="${category.id == selectedCategoryId} ? ' active'"
                                    th:attr="aria-current=${category.id == selectedCategoryId} ? 'page' : null"
-                                   th:text="${category.description}">
+                                   th:text="${category.getName(#locale.language)}">
                                 </a>
                             </h3>
                         </li>

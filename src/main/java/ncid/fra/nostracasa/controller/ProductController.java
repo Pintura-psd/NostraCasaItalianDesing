@@ -5,12 +5,14 @@ import ncid.fra.nostracasa.dto.SearchProductDTO;
 import ncid.fra.nostracasa.model.Product;
 import ncid.fra.nostracasa.service.CategoryService;
 import ncid.fra.nostracasa.service.ProductService;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Locale;
 
 
 @Controller
@@ -31,11 +33,6 @@ public class ProductController {
         model.addAttribute("products", productService.findByCategory(categoryId));
         model.addAttribute("productsByType", productService.getProductsByCategoryGrouped(categoryId));
 
-        //DTO
-        model.addAttribute("category", categoryService.findById(categoryId));
-        model.addAttribute("productsByType", productService.getProductsByCategoryGrouped(categoryId));
-        model.addAttribute("searchProductDTO", new SearchProductDTO());
-
         model.addAttribute("selectedPage", "category");
         model.addAttribute("selectedCategoryId", categoryId);
         return "product/list";
@@ -49,27 +46,5 @@ public class ProductController {
         model.addAttribute("product", productService.findById(productId));
         return "product/detail";
     }
-
-//    @PostMapping("/filter")
-//    public String filter(
-//            @Valid
-//            @ModelAttribute("searchProductDTO")SearchProductDTO searchProductDTO,
-//            BindingResult result,
-//            Model model
-//    ){
-//        model.addAttribute("searchProductDTO", searchProductDTO);
-//
-//        if (result.hasErrors()) {
-//            List<Product> allProducts = productService.findAll();
-//            model.addAttribute("productsByType", productService.groupByTypeName(allProducts));
-//            return "product/list";
-//        }
-//
-//        List<Product> filteredProducts = productService.findByNameContaining(searchProductDTO.getName());
-//        model.addAttribute("productsByType", productService.groupByTypeName(filteredProducts));
-//
-//        model.addAttribute("products", filteredProducts);
-//        return "product/list";
-//    }
 
 }

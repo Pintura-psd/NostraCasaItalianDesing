@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Category</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/4d6bf4659f.js" crossorigin="anonymous"></script>
     <link th:href="@{/stylesCSS/categoriesStyle.css}" rel="stylesheet">
     <link th:href="@{/stylesCSS/footerStyle.css}" rel="stylesheet">
     <link th:href="@{/stylesCSS/navbarStyle.css}" rel="stylesheet">
@@ -77,7 +76,7 @@
                 <div class="card-body text-center">
                     <div class="card-body text-center">
                        <h3> <a th:href="@{/category/{id}/products(id=${category.id})}"
-                           th:text="${category.description}"
+                               th:text="${category.getTranslation(#locale.language).name}"
                            class="card-link text-decoration-none text-dark"></a>
                        </h3>
                     </div>
@@ -90,5 +89,6 @@
 
 <div th:replace="footer :: copy"></div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://kit.fontawesome.com/4d6bf4659f.js" crossorigin="anonymous"></script>
 </body>
 </html>

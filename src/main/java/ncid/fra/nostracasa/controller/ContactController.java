@@ -29,6 +29,7 @@ public class ContactController {
     public String form(Model model) {
         MessagesDTO messageDTO = new MessagesDTO();
         model.addAttribute("messageDTO", messageDTO);
+        model.addAttribute("selectedPage", "contact");
         return "contact/form";
     }
 
@@ -41,6 +42,7 @@ public class ContactController {
         if (result.hasErrors()) {
             System.out.println("ERRORS");
             result.getAllErrors().forEach(e -> System.out.println(e.getDefaultMessage()));
+            model.addAttribute("selectedPage", "contact");
             return "contact/form";
         }
 
