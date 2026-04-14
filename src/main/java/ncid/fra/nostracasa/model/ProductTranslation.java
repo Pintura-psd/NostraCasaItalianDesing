@@ -19,7 +19,10 @@ public class ProductTranslation {
     @Column(nullable = false, length = 5)
     private String locale;
 
+    @Column(length = 255)
     private String name;
+
+    @Column(length = 2000)
     private String description;
 
     @ManyToOne
