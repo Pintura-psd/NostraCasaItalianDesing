@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!--    Estoeslabasededatosdeitaliandesing-->
     <meta charset="UTF-8">
     <title>Products</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
@@ -16,6 +15,24 @@
 <div class="container-fluid px-5 px-lg-custom">
     <h1 th:text="#{products.title}" style="font-weight: bold"></h1>
 
+    <div class="row justify-content-center mb-4">
+        <div class="col-12 col-md-6">
+
+            <div class="input-group rounded-pill overflow-hidden  border border-dark">
+
+            <span class="input-group-text bg-white border-0">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </span>
+
+                <input type="text"
+                       id="searchInput"
+                       class="form-control border-0"
+                       placeholder="Buscar producto...">
+
+            </div>
+
+        </div>
+    </div>
 
     <!-- Itera por tipos -->
     <div th:each="entry : ${productsByType}">
@@ -25,7 +42,9 @@
 
         <div id="Cards" class="row g-4 justify-content-center">
 
-            <div class="col-12 col-md-4" th:each="product : ${entry.value}">
+            <div class="col-12 col-md-4 product-card"
+                 th:each="product : ${entry.value}"
+                 th:attr="data-name=${product.getName(#locale.language).toLowerCase()}">
 
                 <div class="card rounded position-relative overflow-hidden">
 
@@ -52,5 +71,22 @@
 
 <div th:replace="footer :: copy"></div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script>
+    document.getElementById("searchInput").addEventListener("input", function () {
+        const query = this.value.toLowerCase();
+
+        const cards = document.querySelectorAll(".product-card");
+
+        cards.forEach(card => {
+            const name = card.getAttribute("data-name");
+
+            if (name.includes(query)) {
+                card.style.display = "";
+            } else {
+                card.style.display = "none";
+            }
+        });
+    });
+</script>
 </body>
 </html>
