@@ -1,0 +1,400 @@
+/* =========================
+   NAVBAR BASE
+========================= */
+
+.custom-navbar {
+    background: #111;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    height: 100px;
+}
+
+body {
+    padding-top: 80px;
+}
+
+/* layout principal */
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 0;
+}
+
+/* =========================
+    LOGO
+========================= */
+
+.nav-left {
+    background: white;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 40px;
+
+    border-bottom-right-radius: 80px;
+}
+
+/* logo */
+.nav-logo img {
+    height: 45px;
+    transition: transform 0.3s ease;
+}
+
+/* =========================
+   LINKS
+========================= */
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    color: #ccc;
+    text-decoration: none;
+    position: relative;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: white;
+}
+
+.nav-links a.active {
+    color: white;
+}
+
+/* underline animation */
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0%;
+    height: 2px;
+    background: white;
+    transition: 0.3s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* =========================
+   DROPDOWN CUSTOM
+========================= */
+
+.dropdown-custom {
+    position: relative;
+}
+
+.dropdown-menu-custom {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    background: #1a1a1a;
+    padding: 10px 0;
+    min-width: 180px;
+    border-radius: 10px;
+    will-change: transform, opacity;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px) scale(0.98);
+    transform-origin: top;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.nav-links .dropdown-custom:hover .dropdown-menu-custom {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.dropdown-menu-custom li {
+    list-style: none;
+}
+
+.dropdown-menu-custom a {
+    display: block;
+    padding: 8px 15px;
+    color: #ccc;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.dropdown-menu-custom a:hover {
+    background: #333;
+    color: white;
+}
+
+.dropdown-menu-custom .divider {
+    height: 1px;
+    background: #333;
+    margin: 8px 0;
+}
+
+/* dropdown right */
+.dropdown-menu-custom.right {
+    right: 0;
+    left: auto;
+}
+
+/* =========================
+   ICONOS DERECHA
+========================= */
+
+.nav-actions {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    padding-right: 30px;
+}
+
+.nav-actions a {
+    color: #ccc;
+    font-size: 18px;
+    position: relative;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+/* hover color */
+.nav-actions a:hover {
+    color: white;
+}
+
+.nav-actions a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0%;
+    height: 2px;
+    background: white;
+    transition: 0.3s;
+}
+
+.nav-actions a:hover::after {
+    width: 100%;
+}
+
+.dropdown-click.active .dropdown-menu-custom {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+#lang-icon {
+    color: #ccc;
+    font-size: 18px;
+    position: relative;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+#lang-icon:hover {
+    color: white;
+}
+
+#lang-icon::after {
+    display: none;
+}
+
+/* =========================
+   NAVBAR SCROLLED STATE
+========================= */
+
+.custom-navbar {
+    transition: all 0.3s ease;
+}
+
+/* estado al hacer scroll */
+.custom-navbar.scrolled {
+    background: #111;
+    height: 65px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.nav-left {
+    background: white;
+    transition: all 0.3s ease;
+}
+
+.custom-navbar.scrolled .nav-left {
+    background: #111;
+}
+
+.logo-dark {
+    display: none;
+}
+
+.custom-navbar.scrolled .logo-light {
+    display: none;
+}
+
+.custom-navbar.scrolled .logo-dark {
+    display: block;
+}
+
+.custom-navbar,
+.nav-left,
+.nav-logo img {
+    transition: all 0.3s ease;
+}
+
+.custom-navbar.scrolled .nav-logo img {
+    height: 35px;
+}
+
+.custom-navbar.scrolled .nav-links a {
+    font-size: 14px;
+}
+
+.custom-navbar.scrolled {
+    transform: translateY(0);
+}
+
+.custom-navbar.scrolled {
+    background: rgba(17,17,17,0.85);
+    backdrop-filter: blur(12px);
+}
+
+html, body {
+    overflow: visible !important;
+}
+
+/* =========================
+   HAMBURGUESA
+========================= */
+
+.nav-burger {
+    display: none;
+    color: #ccc;
+    font-size: 22px;
+    cursor: pointer;
+    padding-right: 20px;
+}
+
+/* =========================
+   MOBILE OFFCANVAS
+========================= */
+
+.nav-offcanvas {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: #111;
+    z-index: 2000;
+    transition: right 0.3s ease;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-offcanvas.active {
+    right: 0;
+}
+
+.offcanvas-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.close-offcanvas {
+    color: #ccc;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.offcanvas-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.offcanvas-links li {
+    margin-bottom: 20px;
+}
+
+.offcanvas-links a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/* BACKDROP */
+.offcanvas-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+    z-index: 1500;
+}
+
+.offcanvas-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* =========================
+   RESPONSIVE RULES (CLEAN)
+========================= */
+
+@media (max-width: 992px) {
+
+    .nav-links {
+        display: none;
+    }
+
+    /* IMPORTANTE: mantener fila horizontal */
+    .nav-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    /* derecha agrupada */
+    .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding-right: 15px;
+    }
+
+    /* 🔥 BURGER SOLO MÓVIL */
+    .nav-burger {
+        display: block;
+        order: 0; /* izquierda dentro del grupo */
+        font-size: 22px;
+        color: #ccc;
+        cursor: pointer;
+    }
+
+    /* ICONO IDIOMA */
+    .nav-actions {
+        display: flex;
+        order: 1;
+    }
+}

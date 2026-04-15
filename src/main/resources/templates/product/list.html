@@ -7,10 +7,10 @@
     <script src="https://kit.fontawesome.com/4d6bf4659f.js" crossorigin="anonymous"></script>
     <link th:href="@{/stylesCSS/categoriesStyle.css}" rel="stylesheet">
     <link th:href="@{/stylesCSS/footerStyle.css}" rel="stylesheet">
-    <link th:href="@{/stylesCSS/navbarStyle.css}" rel="stylesheet">
+    <link th:href="@{/stylesCSS/navbarCustomStyle.css}" rel="stylesheet">
 </head>
 <body>
-<div th:replace="navbar :: copy"></div>
+<div th:replace="navbarCustom :: copy"></div>
 
 <div class="container-fluid px-5 px-lg-custom">
     <h1 th:text="#{products.title}" style="font-weight: bold"></h1>
@@ -71,22 +71,7 @@
 
 <div th:replace="footer :: copy"></div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-<script>
-    document.getElementById("searchInput").addEventListener("input", function () {
-        const query = this.value.toLowerCase();
-
-        const cards = document.querySelectorAll(".product-card");
-
-        cards.forEach(card => {
-            const name = card.getAttribute("data-name");
-
-            if (name.includes(query)) {
-                card.style.display = "";
-            } else {
-                card.style.display = "none";
-            }
-        });
-    });
-</script>
+<script src="/js/navbarCustom.js"></script>
+<script src="/js/filter.js"></script>
 </body>
 </html>

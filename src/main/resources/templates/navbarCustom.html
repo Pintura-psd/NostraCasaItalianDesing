@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Navbar Custom</title>
+    <link th:href="@{/stylesCSS/navbarCustomStyle.css}" rel="stylesheet">
+</head>
+<body>
+<div th:fragment="copy">
+    <nav class="custom-navbar">
+
+        <div class="nav-container">
+
+            <!-- LOGO -->
+            <div class="nav-left">
+                <a class="nav-logo" th:href="@{/}">
+                    <img class="logo-light" th:src="@{/logos/nostracasa_logo_light.svg}" alt="Logo">
+                    <img class="logo-dark" th:src="@{/logos/nostracasa_logo_dark.svg}" alt="Logo">
+                </a>
+            </div>
+
+            <!-- LINKS CENTRALES -->
+            <ul class="nav-links">
+
+                <li>
+                    <a th:href="@{/}"
+                       th:classappend="${selectedPage == 'home'} ? ' active'"
+                       th:text="#{nav.home}">
+                    </a>
+                </li>
+
+                <li class="dropdown-custom">
+
+                    <a href="#"
+                       th:classappend="${selectedPage == 'category'} ? ' active'">
+                        <span th:text="#{nav.catalog}"></span>
+                        <i class="fa-solid fa-angle-down"></i>
+                    </a>
+
+                    <ul class="dropdown-menu-custom">
+                        <li>
+                            <a th:href="@{/category}"
+                               th:text="#{nav.categories}">
+                            </a>
+                        </li>
+
+                        <li class="divider"></li>
+
+                        <li th:each="category : ${categories}">
+                            <a th:href="@{/category/{id}/products(id=${category.id})}"
+                               th:classappend="${category.id == selectedCategoryId} ? ' active'"
+                               th:text="${category.getName(#locale.language)}">
+                            </a>
+                        </li>
+                    </ul>
+
+                </li>
+
+                <li>
+                    <a href="#"
+                       th:classappend="${selectedPage == 'projects'} ? ' active'"
+                       th:text="#{nav.projects}">
+                    </a>
+                </li>
+
+                <li>
+                    <a th:href="@{/contact}"
+                       th:classappend="${selectedPage == 'contact'} ? ' active'"
+                       th:text="#{nav.contact}">
+                    </a>
+                </li>
+
+            </ul>
+
+            <!-- ICONOS + BURGER DERECHA -->
+            <div class="nav-right">
+                <div class="nav-burger">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+
+                <div class="nav-actions">
+                    <div class="dropdown-custom dropdown-click">
+                        <a id="lang-icon" class="dropdown-toggle">
+                            <i class="fa-solid fa-earth-americas"></i>
+                        </a>
+                        <ul class="dropdown-menu-custom right">
+                            <li><a href="?lang=es">Español</a></li>
+                            <li><a href="?lang=en">English</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- OFFCANVAS -->
+    <div class="nav-offcanvas">
+        <div class="offcanvas-header">
+            <a class="nav-logo" th:href="@{/}">
+                <img class="logo-light" th:src="@{/logos/nostracasa_logo_dark.svg}" alt="Logo">
+            </a>
+
+            <i class="fa-solid fa-xmark close-offcanvas"></i>
+        </div>
+
+        <ul class="offcanvas-links">
+            <li><a th:href="@{/}" th:text="#{nav.home}"></a></li>
+            <li><a href="#" th:text="#{nav.catalog}"></a></li>
+            <li><a href="#" th:text="#{nav.projects}"></a></li>
+            <li><a th:href="@{/contact}" th:text="#{nav.contact}"></a></li>
+        </ul>
+    </div>
+    <!-- BACKDROP -->
+    <div class="offcanvas-backdrop"></div>
+
+</div>
+</body>
+</html>
