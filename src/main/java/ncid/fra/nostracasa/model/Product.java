@@ -1,6 +1,7 @@
 package ncid.fra.nostracasa.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -44,6 +45,25 @@ public class Product {
 
     @Column(name = "finishes")
     private String finishes;
+
+    @Column(name = "pieces_per_box")
+    @Min(1)
+    private int piecesPerBox;
+
+    @Column(name = "box_per_pallet")
+    private int boxesPerPallet;
+
+    @Column(name = "m2_per_box")
+    private double m2_per_box;
+
+    @Column(name = "m2_per_pallet")
+    private Double m2_per_pallet;
+
+    @Column(name = "weight_per_box")
+    private Double weight_per_box;
+
+    @Column(name = "weight_per_pallet")
+    private Double weight_per_pallet;
 
     //Relaciones
     @ManyToOne
