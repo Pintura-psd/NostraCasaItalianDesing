@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import ncid.fra.nostracasa.service.EmailService;
 
 import java.time.LocalDateTime;
 
@@ -19,10 +20,12 @@ import java.time.LocalDateTime;
 public class ContactController {
 
     public final MessagesService messagesService;
+    public final EmailService emailService;
 
 
-    public ContactController(MessagesService messagesService) {
+    public ContactController(MessagesService messagesService, EmailService emailService) {
         this.messagesService = messagesService;
+        this.emailService = emailService;
     }
 
     @GetMapping
@@ -47,6 +50,14 @@ public class ContactController {
         }
 
         messagesService.save(messageDTO);
+
+        try {
+            emailService.sendContactEmail(messageDTO);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        emailService.sendContactEmail(messageDTO);
 
         return "redirect:/contact?success";
     }
