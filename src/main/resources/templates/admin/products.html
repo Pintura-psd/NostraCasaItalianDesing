@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Product</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/4d6bf4659f.js" crossorigin="anonymous"></script>
+    <link th:href="@{/stylesCSS/footerStyle.css}" rel="stylesheet">
+    <link th:href="@{/stylesCSS/navbarCustomStyle.css}" rel="stylesheet">
+</head>
+<body class="container mt-5">
+
+<h1>Panel Admin - Productos</h1>
+
+<!-- 🔹 FORMULARIO -->
+<h3>Añadir Producto</h3>
+
+<form th:action="@{/admin/products/add}"
+      th:object="${productDTO}"
+      method="post"
+      enctype="multipart/form-data">
+
+    <!-- CATEGORÍA -->
+    <div class="mb-3">
+        <label>Categoría</label>
+        <select th:field="*{categoryId}"
+                th:classappend="${#fields.hasErrors('categoryId')} ? 'is-invalid' : ''"
+                class="form-control">
+            <option value="">-- Selecciona una categoría --</option>
+            <option th:each="cat : ${categories}"
+                    th:value="${cat.id}"
+                    th:text="${cat.getName('es')}">
+            </option>
+        </select>
+        <div class="invalid-feedback"
+             th:if="${#fields.hasErrors('categoryId')}"
+             th:errors="*{categoryId}"></div>
+    </div>
+
+    <!-- NOMBRE ES -->
+    <div class="mb-3">
+        <label>Nombre (ES)</label>
+        <input type="text" th:field="*{nameEs}"
+               th:classappend="${#fields.hasErrors('nameEs')} ? 'is-invalid' : ''"
+               class="form-control">
+        <div class="invalid-feedback"
+             th:if="${#fields.hasErrors('nameEs')}"
+             th:errors="*{nameEs}"></div>
+    </div>
+
+    <!-- NOMBRE EN -->
+    <div class="mb-3">
+        <label>Nombre (EN)</label>
+        <input type="text" th:field="*{nameEn}"
+               th:classappend="${#fields.hasErrors('nameEn')} ? 'is-invalid' : ''"
+               class="form-control">
+        <div class="invalid-feedback"
+             th:if="${#fields.hasErrors('nameEn')}"
+             th:errors="*{nameEn}"></div>
+    </div>
+
+    <!-- DESCRIPCIÓN ES -->
+    <div class="mb-3">
+        <label>Descripción (ES)</label>
+        <textarea th:field="*{descriptionEs}"
+                  th:classappend="${#fields.hasErrors('descriptionEs')} ? 'is-invalid' : ''"
+                  class="form-control"></textarea>
+        <div class="invalid-feedback"
+             th:if="${#fields.hasErrors('descriptionEs')}"
+             th:errors="*{descriptionEs}"></div>
+    </div>
+
+    <!-- DESCRIPCIÓN EN -->
+    <div class="mb-3">
+        <label>Descripción (EN)</label>
+        <textarea th:field="*{descriptionEn}"
+                  th:classappend="${#fields.hasErrors('descriptionEn')} ? 'is-invalid' : ''"
+                  class="form-control"></textarea>
+        <div class="invalid-feedback"
+             th:if="${#fields.hasErrors('descriptionEn')}"
+             th:errors="*{descriptionEn}"></div>
+    </div>
+
+    <!-- PRECIO -->
+    <div class="mb-3">
+        <label>Precio</label>
+        <input type="number" step="0.01" th:field="*{price}"
+               th:classappend="${#fields.hasErrors('price')} ? 'is-invalid' : ''"
+               class="form-control">
+        <div class="invalid-feedback"
+             th:if="${#fields.hasErrors('price')}"
+             th:errors="*{price}"></div>
+    </div>
+
+    <!-- MATERIAL -->
+    <div class="mb-3">
+        <label>Material</label>
+        <input type="text" th:field="*{material}"
+               th:classappend="${#fields.hasErrors('material')} ? 'is-invalid' : ''"
+               class="form-control">
+        <div class="invalid-feedback"
+             th:if="${#fields.hasErrors('material')}"
+             th:errors="*{material}"></div>
+    </div>
+
+    <!-- TIPO -->
+    <div class="mb-3">
+        <label>Tipo</label>
+        <input type="text" th:field="*{type}"
+               th:classappend="${#fields.hasErrors('type')} ? 'is-invalid' : ''"
+               class="form-control">
+        <div class="invalid-feedback"
+             th:if="${#fields.hasErrors('type')}"
+             th:errors="*{type}"></div>
+    </div>
+
+    <!-- TAMAÑO -->
+    <div class="mb-3">
+        <label>Tamaño</label>
+        <input type="text" th:field="*{size}"
+               th:classappend="${#fields.hasErrors('size')} ? 'is-invalid' : ''"
+               class="form-control">
+        <div class="invalid-feedback"
+             th:if="${#fields.hasErrors('size')}"
+             th:errors="*{size}"></div>
+    </div>
+
+    <!-- PIEZAS -->
+    <div class="mb-3">
+        <label>Piezas por caja</label>
+        <input type="number" th:field="*{piecesPerBox}"
+               th:classappend="${#fields.hasErrors('piecesPerBox')} ? 'is-invalid' : ''"
+               class="form-control">
+        <div class="invalid-feedback"
+             th:if="${#fields.hasErrors('piecesPerBox')}"
+             th:errors="*{piecesPerBox}"></div>
+    </div>
+
+    <!-- GROSOR -->
+    <div class="mb-3">
+        <label>Grosor</label>
+        <input type="number" step="0.01" th:field="*{thickness}"
+               th:classappend="${#fields.hasErrors('thickness')} ? 'is-invalid' : ''"
+               class="form-control">
+        <div class="invalid-feedback"
+             th:if="${#fields.hasErrors('thickness')}"
+             th:errors="*{thickness}"></div>
+    </div>
+
+    <!-- FINISHES -->
+    <div class="mb-3">
+        <label>Finishes</label>
+        <input type="text" th:field="*{finishes}"
+               th:classappend="${#fields.hasErrors('finishes')} ? 'is-invalid' : ''"
+               class="form-control">
+        <div class="invalid-feedback"
+             th:if="${#fields.hasErrors('finishes')}"
+             th:errors="*{finishes}"></div>
+    </div>
+
+    <!-- CAJAS -->
+    <div class="mb-3">
+        <label>Cajas por palet</label>
+        <input type="number" th:field="*{boxesPerPallet}"
+               th:classappend="${#fields.hasErrors('boxesPerPallet')} ? 'is-invalid' : ''"
+               class="form-control">
+        <div class="invalid-feedback"
+             th:if="${#fields.hasErrors('boxesPerPallet')}"
+             th:errors="*{boxesPerPallet}"></div>
+    </div>
+
+    <!-- M2 CAJA -->
+    <div class="mb-3">
+        <label>m² por caja</label>
+        <input type="number" step="0.01" th:field="*{m2PerBox}"
+               th:classappend="${#fields.hasErrors('m2PerBox')} ? 'is-invalid' : ''"
+               class="form-control">
+        <div class="invalid-feedback"
+             th:if="${#fields.hasErrors('m2PerBox')}"
+             th:errors="*{m2PerBox}"></div>
+    </div>
+
+    <!-- M2 PALET -->
+    <div class="mb-3">
+        <label>m² por palet</label>
+        <input type="number" step="0.01" th:field="*{m2PerPallet}"
+               th:classappend="${#fields.hasErrors('m2PerPallet')} ? 'is-invalid' : ''"
+               class="form-control">
+        <div class="invalid-feedback"
+             th:if="${#fields.hasErrors('m2PerPallet')}"
+             th:errors="*{m2PerPallet}">
+
+        </div>
+    </div>
+
+    <!-- PESOS -->
+    <div class="mb-3">
+        <label>Peso por caja</label>
+        <input type="number" step="0.01" th:field="*{weightPerBox}"
+               th:classappend="${#fields.hasErrors('weightPerBox')} ? 'is-invalid' : ''"
+               class="form-control">
+
+        <div class="invalid-feedback"
+             th:if="${#fields.hasErrors('weightPerBox')}"
+             th:errors="*{weightPerBox}">
+
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label>Peso por palet</label>
+        <input type="number" step="0.01" th:field="*{weightPerPallet}"
+               th:classappend="${#fields.hasErrors('weightPerPallet')} ? 'is-invalid' : ''"
+               class="form-control">
+        <div class="invalid-feedback"
+             th:if="${#fields.hasErrors('weightPerPallet')}"
+             th:errors="*{weightPerPallet}"></div>
+    </div>
+
+    <!--IMAGENES-->
+    <div class="mb-3">
+        <!-- Thumbnail -->
+        <label>Thumbnail</label>
+        <input type="file" name="thumbnail" class="form-control">
+
+        <!-- Detail -->
+        <label>Detail</label>
+        <input type="file" name="detail" class="form-control">
+
+        <!-- Compositions -->
+        <label>Compositions</label>
+        <input type="file" name="compositions" multiple class="form-control">
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Añadir Producto</button>
+
+</form>
+
+<hr>
+
+<!-- 🔹 LISTA DE PRODUCTOS -->
+<h3>Productos existentes</h3>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <!-- Identidad -->
+        <th>ID</th>
+        <th>Nombre</th>
+
+        <!-- Comercial -->
+        <th>Precio</th>
+        <th>Categoría</th>
+
+        <!-- Producto -->
+        <th>Tipo</th>
+        <th>Tamaño</th>
+
+        <!-- Técnica -->
+        <th>Piezas/caja</th>
+        <th>Grosor</th>
+        <th>Acabados</th>
+
+        <!-- Logística -->
+        <th>Cajas/palet</th>
+        <th>m² caja</th>
+        <th>m² palet</th>
+        <th>Peso caja</th>
+        <th>Peso palet</th>
+
+        <!-- Acciones -->
+        <th>Acciones</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="p : ${products}">
+
+        <!-- Identidad -->
+        <td th:text="${p.id}"></td>
+        <td th:text="${p.getName(locale)}"></td>
+
+        <!-- Comercial -->
+        <td th:text="${p.price}"></td>
+        <td th:text="${p.category != null ? p.category.getName('es') : 'Sin categoría'}"></td>
+
+        <!-- Producto -->
+        <td th:text="${p.type}"></td>
+        <td th:text="${p.size}"></td>
+
+        <!-- Técnica -->
+        <td th:text="${p.piecesPerBox}"></td>
+        <td th:text="${p.thickness}"></td>
+        <td th:text="${p.finishes}"></td>
+
+        <!-- Logística -->
+        <td th:text="${p.boxesPerPallet}"></td>
+        <td th:text="${p.m2_per_box}"></td>
+        <td th:text="${p.m2_per_pallet}"></td>
+        <td th:text="${p.weight_per_box}"></td>
+        <td th:text="${p.weight_per_pallet}"></td>
+
+        <!-- Acciones -->
+        <td>
+            <a th:href="@{'/admin/products/delete/' + ${p.id}}"
+               class="btn btn-danger btn-sm">
+                Eliminar
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

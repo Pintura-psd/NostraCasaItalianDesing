@@ -89,6 +89,7 @@
             <artifactId>postgresql</artifactId>
             <version>42.6.0</version>
         </dependency>
+        <!-- Subir imágenes -->
 
 	</dependencies>
 
