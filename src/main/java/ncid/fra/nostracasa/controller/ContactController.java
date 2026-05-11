@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ncid.fra.nostracasa.service.EmailService;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDateTime;
 
@@ -40,26 +41,28 @@ public class ContactController {
     public String submitForm(
             @Valid @ModelAttribute("messageDTO") MessagesDTO messageDTO,
             BindingResult result,
-            Model model) {
+            Model model,
+            RedirectAttributes redirectAttributes) {
 
         if (result.hasErrors()) {
-            System.out.println("ERRORS");
-            result.getAllErrors().forEach(e -> System.out.println(e.getDefaultMessage()));
             model.addAttribute("selectedPage", "contact");
             return "contact/form";
         }
 
-        messagesService.save(messageDTO);
-
         try {
+            messagesService.save(messageDTO);
             emailService.sendContactEmail(messageDTO);
+
+            redirectAttributes.addFlashAttribute("successMessage",
+                    "Message send successfully.");
+
         } catch (Exception e) {
-            e.printStackTrace();
+
+            redirectAttributes.addFlashAttribute("errorMessage",
+                    "Error sending the message.");
         }
 
-        emailService.sendContactEmail(messageDTO);
-
-        return "redirect:/contact?success";
+        return "redirect:/contact";
     }
 
 }

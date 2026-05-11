@@ -100,3 +100,50 @@
 #carouselCards .card:hover .card-body {
     color: #ffffff;
 }
+
+/*Responsive de secction 1*/
+@media (max-width: 768px) {
+
+    .px-lg-custom {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    #section1 h1 {
+        font-size: 2rem;
+    }
+
+    #section1 h3 {
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+}
+
+/*Responsive section 2*/
+@media (max-width: 768px) {
+
+    /* Solo mostrar 1 card por slide */
+    #carouselCards .row {
+        justify-content: center;
+    }
+
+    #carouselCards .col-6 {
+        display: none;
+    }
+
+    /* Mostrar solo la primera card visible de cada slide */
+    #carouselCards .carousel-item .col-6:first-child {
+        display: block;
+        width: 85%;
+    }
+
+    /* Ajustar imagen */
+    #carouselCards .card-img-top {
+        height: 250px;
+    }
+
+    /* Indicadores más abajo */
+    #carrusel2-indicators {
+        bottom: -10px;
+    }
+}

@@ -55,13 +55,13 @@
                     </ul>
 
                 </li>
-
-                <li>
-                    <a href="#"
-                       th:classappend="${selectedPage == 'projects'} ? ' active'"
-                       th:text="#{nav.projects}">
-                    </a>
-                </li>
+<!--        Para cuando hayan proyectos hechos.-->
+<!--                <li>-->
+<!--                    <a href="#"-->
+<!--                       th:classappend="${selectedPage == 'projects'} ? ' active'"-->
+<!--                       th:text="#{nav.projects}">-->
+<!--                    </a>-->
+<!--                </li>-->
 
                 <li>
                     <a th:href="@{/contact}"
@@ -106,7 +106,8 @@
         <ul class="offcanvas-links">
             <li><a th:href="@{/}" th:text="#{nav.home}"></a></li>
             <li><a th:href="@{/category}" th:text="#{nav.catalog}"></a></li>
-            <li><a href="#" th:text="#{nav.projects}"></a></li>
+<!--            Para cuando haya proyectos hechos-->
+<!--            <li><a href="#" th:text="#{nav.projects}"></a></li>-->
             <li><a th:href="@{/contact}" th:text="#{nav.contact}"></a></li>
         </ul>
     </div>

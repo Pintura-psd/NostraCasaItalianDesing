@@ -1,0 +1,92 @@
+/* =========================
+   GENERAL PADDING
+========================= */
+
+.px-lg-custom {
+    padding-left: 150px;
+    padding-right: 150px;
+}
+
+/* =========================
+   CONTACT BOXES
+========================= */
+
+.contact-box {
+    background-color: #ececec;
+    border: 2px solid black;
+    padding: 20px;
+    border-radius: 1rem;
+    height: 100%;
+}
+
+/* =========================
+   MAP
+========================= */
+
+.map-box {
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.map-container {
+    flex-grow: 1;
+    border: 2px solid black;
+    border-radius: 1rem;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.disclaimer-box {
+    background-color: #ececec;
+    color: #a80000;
+    border: 2px solid #a80000;
+}
+
+#spinner {
+    margin-left: 8px;
+}
+
+/* movil */
+
+@media (max-width: 768px) {
+
+    .px-lg-custom {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    .contact-box {
+        padding: 15px;
+    }
+
+    .map-box {
+        min-height: 350px;
+    }
+
+    .disclaimer-box {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+
+    .email-link {
+        color: #a80000;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .email-link:hover {
+        color: #000000;
+    }
+}
